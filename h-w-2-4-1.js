@@ -10,12 +10,16 @@ let expectedResult = [40590, 148200, 25709]
      for(monthExp of expencesArray) {
         if (monthExp > 1000){
         sum += monthExp;
+    } else if(monthExp < 1000){
+       let monthNumber = expencesArray.indexOf(monthExp)
+       let date = new Date(0, monthNumber);
+       console.log(monthNumber, date.toLocaleString("en-GB", {month:"short"}))
     }
     }
      return sum;
 } 
 
-console.log(calculateExpences(expencesExamples[0].yearlyExpences)) 
+
 
 function testCalculationExp(expectedResult, expencesArray) {
    let actualResult = calculateExpences(expencesArray)
@@ -29,3 +33,8 @@ function testCalculationExp(expectedResult, expencesArray) {
 expencesExamples.forEach((expenceEx, index) => {
     testCalculationExp(expectedResult[index],expenceEx.yearlyExpences)
 })
+
+// let timestamp = Date.now();
+// let date = new Date(timestamp);
+
+// console.log(date.toLocaleString("en-GB", {month:"short"}))
